@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="image.png">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="overlay.css">
+    <script src="https://kit.fontawesome.com/42befcb99a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="overlay">Connecting to server...</div>
+    <h1>URL Shortener</h1>
+    <div class="main">
+
+    
+        <input type="text" placeholder="paste url here" class="input-box">
+        <button class="submit-btn">Submit</button>
+        <p class="new-url"></p>
+        <span class="copy-icon" onclick="copyText()">📋 copy link</span>
+        <p class="copy-msg"></p>
+        <div class="stored-data">
+            
+         
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
