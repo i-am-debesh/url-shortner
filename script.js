@@ -108,3 +108,17 @@ function copyText() {
         console.error("Failed to copy: ", err);
   });
 }
+
+document.querySelector('.delete-btn').addEventListener('click',()=>{
+  if(localStorage.getItem('lol') !== '') {
+    let userConfirmation = prompt('Delete All Urls? (y/n)');
+    if(userConfirmation === 'y' || userConfirmation==='Y') {
+      localStorage.removeItem('urlList');
+      alert('all urls deleted successfully!');
+      renderList();
+    }
+    
+  }else {
+    alert('list is empty!');
+  }
+})

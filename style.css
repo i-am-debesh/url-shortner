@@ -39,6 +39,10 @@ h1{
 
 }
 
+.submit-btn:active{
+    background-color: rgba(60, 159, 149, 0.589);
+}
+
 .new-url {
     background-color: rgb(99, 122, 118);
     padding: 1rem;
@@ -98,4 +102,12 @@ h1{
 }
 .short-link {
     background-color: rgb(80, 76, 76);
+}
+.data-func {
+    display: block;
+}
+.delete-btn {
+    padding: 0.1rem 1rem;
+    margin-top: 1rem;
+    
 }
