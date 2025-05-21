@@ -62,7 +62,7 @@ function setConnectionURL(username) {
   if(username === 'd391') {
     serverURL = serverURL_d391;
     return;
-  }else if(username === 'mithai') {
+  }else if(username.toLowerCase().includes('mithai')) {
     serverURL = serverURL_mithai;
     return;
   }
