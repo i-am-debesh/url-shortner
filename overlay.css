@@ -12,4 +12,10 @@
     font-size: 24px;
     z-index: 9999;
     display: flex; /* hidden by default */
+    animation: fadeInOut 1.5s ease-in-out infinite;
+}
+@keyframes fadeInOut {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
 }
