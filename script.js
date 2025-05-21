@@ -74,7 +74,7 @@ async function connectToServer() {
         setUserName();
     }
     userName = localStorage.getItem('username');
-    if(userName === 'mithai') {
+    if(userName.toLowerCase().includes('mithai')) {
         alert('welcome kuchipuchi ❤️');
     }
     setConnectionURL(userName);
