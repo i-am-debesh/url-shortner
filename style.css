@@ -12,6 +12,11 @@ body {
 h1{
     margin-top: -1rem;
 }
+.user-name {
+    margin-left: 0.4rem;
+    font-size: 14px;
+    color: rgb(105, 153, 132);
+}
 .main {
     display: flex;
     flex-direction: column;

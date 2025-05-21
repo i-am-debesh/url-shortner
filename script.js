@@ -3,6 +3,19 @@ const submitBtn = document.querySelector('.submit-btn');
 const newUrlField = document.querySelector('.new-url');
 const availableData = document.querySelector('.stored-data');
 const copyBtn = document.querySelector('.copy-icon');
+let userName = 'user';
+//URLs::::::::::;
+
+const serverURL_d391 = `https://d391.onrender.com`;
+const serverURL_mithai = `https://mithai-0t52.onrender.com`;
+const localURL = `http://localhost:5000`;
+let serverURL = '';
+// :::::::::::::::::::::::::
+connectToServer();
+
+
+
+
 
 function renderList() {
   availableData.innerHTML='';
@@ -33,33 +46,67 @@ function storeData(originalURL, shortURL) {
   localStorage.setItem("urlList",JSON.stringify(urlList));
 
 }
+function setUserName() {
+
+  const username = prompt('Enter your username');
+  if(username.length > 0) {
+      userName = username;
+      document.querySelector('.user-name').innerHTML = userName;
+    }
+    document.querySelector('.user-name').innerHTML = userName;
+    localStorage.setItem('username',userName);
+    setConnectionURL(localStorage.getItem('username'));
+
+}
+function setConnectionURL(username) {
+  if(username === 'd391') {
+    serverURL = serverURL_d391;
+    return;
+  }else if(username === 'mithai') {
+    serverURL = serverURL_mithai;
+    return;
+  }
+  serverURL = serverURL_d391;
+}
 async function connectToServer() {
-    const serverURL = `https://d391.onrender.com`;
-    const localURL = `http://localhost:5000/`;
+
+    if(!localStorage.getItem('username')) {
+        setUserName();
+    }
+    userName = localStorage.getItem('username');
+    if(userName === 'mithai') {
+        alert('welcome kuchipuchi ❤️');
+    }
+    setConnectionURL(userName);
 
     try {
     const response = await fetch(serverURL);
     document.getElementById('overlay').style.display = 'none';
+    
+    
+    document.querySelector('.user-name').innerHTML = `( ${localStorage.getItem('username')} )`;
+    
+    
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     
     }
     return 1;
 
-  } catch (error) {
-    return 0;
-  }
+    } catch (error) {
+      return 0;
+    }
 }
-connectToServer();
+
 async function getShortURL(myURL) {
 
-  const customURL = `https://d391.onrender.com/userurl?url=${myURL}`;
-
-  const localURL = `http://localhost:5000/userurl?url=${myURL}`;
+    const customURL = serverURL+`/userurl?url=${myURL}`;
+    console.log(customURL);
     
-    const serverURL = customURL;
+    
+    
     try {
-        const response = await fetch(serverURL);
+        const response = await fetch(customURL);
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
@@ -114,8 +161,10 @@ document.querySelector('.delete-btn').addEventListener('click',()=>{
     let userConfirmation = prompt('Delete All Urls? (y/n)');
     if(userConfirmation === 'y' || userConfirmation==='Y') {
       localStorage.removeItem('urlList');
+      localStorage.removeItem('username');
       alert('all urls deleted successfully!');
       renderList();
+      location.reload();
     }
     
   }else {
